@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "author": "sasidhar",
+  "author": "Samuel",
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -16,12 +16,20 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.14",
     "nodemailer": "^6.7.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamuelRanjith/Hackathon_crm_backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SamuelRanjith/Hackathon_crm_backend/issues"
+  },
+  "homepage": "https://github.com/SamuelRanjith/Hackathon_crm_backend#readme"
 }
