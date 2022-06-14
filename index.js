@@ -42,5 +42,4 @@ app.get("/", (req, res) => {
   );
 });
 app.listen(PORT, () => console.log(`server up and running at  ${PORT}`));
-
 // "start": "nodemon index.js"
