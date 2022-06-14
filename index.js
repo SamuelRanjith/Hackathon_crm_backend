@@ -1,31 +1,31 @@
-import express, { json } from "express";
+const express = require("express");
 const app = express();
-import { config } from "dotenv";
-import { connect } from "mongoose";
-import cors from "cors";
-const PORT = process.env.PORT;
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const PORT = process.env.PORT || 4050;
 
 //IMPORT ROUTES
 
-import adminRoute from "./routes/adminauth/adminauth";
-import managerRoute from "./routes/managerauth/managerauth";
-import employeeRoute from "./routes/employeeauth/employeeauth";
-import adminDashboardRoute from "./routes/adminauth/adminDashboard";
-import managerDashboardRoute from "./routes/managerauth/managerDashboard";
-import employeeDashboardRoute from "./routes/employeeauth/employeeDashboard";
+const adminRoute = require("./routes/adminauth/adminauth");
+const managerRoute = require("./routes/managerauth/managerauth");
+const employeeRoute = require("./routes/employeeauth/employeeauth");
+const adminDashboardRoute = require("./routes/adminauth/adminDashboard");
+const managerDashboardRoute = require("./routes/managerauth/managerDashboard");
+const employeeDashboardRoute = require("./routes/employeeauth/employeeDashboard");
 
-config();
+dotenv.config();
 
 //CONNECTION TO DATABASE
 
-connect(
+mongoose.connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("connected to db  ")
 );
 
 //MIDDLEWARE
-app.use(json(), cors());
+app.use(express.json(), cors());
 
 //ROUTE MIDDLEWARE
 
@@ -38,8 +38,9 @@ app.use("/api/employeedashboard", employeeDashboardRoute);
 
 app.get("/", (req, res) => {
   res.send(
-    `<a href="https://github.com/SamuelRanjith/Hackathon_crm_backend.git">This is backend app , click to open code</a>`
+    `<a href="https://github.com/katikelasasidhar/Hackathon2-CRM-Backend.git">This is a backend app , click to open code</a>`
   );
 });
 app.listen(PORT, () => console.log(`server up and running at  ${PORT}`));
+
 // "start": "nodemon index.js"
