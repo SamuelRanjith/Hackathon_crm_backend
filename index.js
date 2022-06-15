@@ -3,7 +3,7 @@ const app = express();
 import dotenv from "dotenv";
 import { MongoClient } from "Mongodb";
 import cors from "cors";
-const PORT = process.env.PORT || 4050;
+const PORT = process.env.PORT;
 
 //IMPORT ROUTES
 
