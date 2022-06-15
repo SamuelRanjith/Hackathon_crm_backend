@@ -7,7 +7,7 @@ const PORT = process.env.PORT;
 
 //IMPORT ROUTES
 
-import adminRoute from "./routes/adminauth/adminauth";
+import adminRoute from "./routes/adminauth/adminauth.js";
 import managerRoute from "./routes/managerauth/managerauth";
 import employeeRoute from "./routes/employeeauth/employeeauth";
 import adminDashboardRoute from "./routes/adminauth/adminDashboard";
