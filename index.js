@@ -8,11 +8,11 @@ const PORT = process.env.PORT;
 //IMPORT ROUTES
 
 import adminRoute from "./routes/adminauth/adminauth.js";
-import managerRoute from "./routes/managerauth/managerauth";
-import employeeRoute from "./routes/employeeauth/employeeauth";
-import adminDashboardRoute from "./routes/adminauth/adminDashboard";
-import managerDashboardRoute from "./routes/managerauth/managerDashboard";
-import employeeDashboardRoute from "./routes/employeeauth/employeeDashboard";
+import managerRoute from "./routes/managerauth/managerauth.js";
+import employeeRoute from "./routes/employeeauth/employeeauth.js";
+import adminDashboardRoute from "./routes/adminauth/adminDashboard.js";
+import managerDashboardRoute from "./routes/managerauth/managerDashboard.js";
+import employeeDashboardRoute from "./routes/employeeauth/employeeDashboard.js";
 
 dotenv.config();
 
