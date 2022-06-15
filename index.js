@@ -1,7 +1,7 @@
 import express, { json } from "express";
 const app = express();
 import dotenv from "dotenv";
-import { MongoClient } from "Mongodb";
+import { ConnectionCheckedInEvent, MongoClient } from "Mongodb";
 import cors from "cors";
 const PORT = process.env.PORT;
 
@@ -18,14 +18,19 @@ dotenv.config();
 
 //CONNECTION TO DATABASE
 
-connect(
-  process.env.DB_CONNECT,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => console.log("connected to db  ")
-);
+const MONGO_URL = "mongodb://localhost";
 
-//MIDDLEWARE
-app.use(json(), cors());
+// node - Mongodb
+async function createConnection(){
+  const client = new MongoClient(MONGO_URL); 
+  await client.connect();
+  console.log("Mongodb is connected")
+}
+
+createConnection();
+
+//MIDDLEWARE 
+app.use(express.json(), cors());
 
 //ROUTE MIDDLEWARE
 
