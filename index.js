@@ -1,9 +1,9 @@
-import express, { json } from "express";
+const express = require("express");
 const app = express();
-import dotenv from "dotenv";
-import { ConnectionCheckedInEvent, MongoClient } from "Mongodb";
-import cors from "cors";
-const PORT = process.env.PORT;
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const PORT = process.env.PORT || 4050;
 
 //IMPORT ROUTES
 

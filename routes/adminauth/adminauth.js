@@ -2,7 +2,7 @@ const router = require("express").Router();
 import { genSalt, hash, compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import nodemailer from "nodemailer";
-import User, { findOne, deleteOne } from "../../models/User.js";
+import User, { findOne, deleteOne } from "../../models/User";
 import verify from "./adminverfiy";
 
 //VALIDATION OF USER INPUTS PREREQUISITES
