@@ -1,35 +1,35 @@
 const router = require("express").Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
-const User = require("../../models/User");
-const verify = require("../adminverify");
+import { genSalt, hash, compare } from "bcryptjs";
+import { sign } from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import User, { findOne, deleteOne } from "../../models/User";
+import verify from "../adminverify";
 
 //VALIDATION OF USER INPUTS PREREQUISITES
-const Joi = require("@hapi/joi");
+import { object, string } from "@hapi/joi";
 
-const registerSchema = Joi.object({
-  fname: Joi.string().min(3).required(),
-  lname: Joi.string().min(3).required(),
-  email: Joi.string().min(3).required().email(),
-  password: Joi.string().min(3).required(),
+const registerSchema = object({
+  fname: string().min(3).required(),
+  lname: string().min(3).required(),
+  email: string().min(3).required().email(),
+  password: string().min(3).required(),
 });
 
-const loginSchema = Joi.object({
-  email: Joi.string().min(3).required().email(),
-  password: Joi.string().min(3).required(),
+const loginSchema = object({
+  email: string().min(3).required().email(),
+  password: string().min(3).required(),
 });
 
 //SIGNUP USER
 router.post("/register",  async (req, res) => {
   //CHECKING IF USER EMAIL ALREADY EXISTS
-  const emailExist = await User.findOne({ email: req.body.email });
+  const emailExist = await findOne({ email: req.body.email });
   if (emailExist) res.status(400).send("Email already exists");
 
   //HASHING THE PASSWORD
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  const salt = await genSalt(10);
+  const hashedPassword = await hash(req.body.password, salt);
 
   //ON PROCESS OF ADDING NEW USER
 
@@ -63,12 +63,12 @@ router.post("/register",  async (req, res) => {
 router.post("/login", async (req, res) => {
   //CHECKING IF USER EMAIL EXISTS
 
-  const user = await User.findOne({ email: req.body.email });
+  const user = await findOne({ email: req.body.email });
   if (!user) return res.status(400).send("Incorrect Email- ID");
 
   //CHECKING IF USER PASSWORD MATCHES
 
-  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  const validPassword = await compare(req.body.password, user.password);
   if (!validPassword)
     return res.status(400).send({ message: "Incorrect Password" });
 
@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
     else {
       //   res.send("success");
       if (user.type === "admin") {
-        const token = jwt.sign(
+        const token = sign(
           { _id: user._id },
           process.env.ADMIN_TOKEN_SECRET
         );
@@ -99,7 +99,7 @@ router.post("/login", async (req, res) => {
 
 router.delete("/deleteuser", verify, async (req, res) => {
   try {
-    const users = await User.deleteOne({ email: req.body.email });
+    const users = await deleteOne({ email: req.body.email });
     res.status(200).send("deleted succesfully");
   } catch (error) {
     console.log(error);
@@ -107,4 +107,4 @@ router.delete("/deleteuser", verify, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

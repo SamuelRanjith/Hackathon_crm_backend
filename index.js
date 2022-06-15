@@ -1,7 +1,7 @@
 import express, { json } from "express";
 const app = express();
-import { config } from "dotenv";
-import { connect } from "mongoose";
+import dotenv from "dotenv";
+import { MongoClient } from "Mongodb";
 import cors from "cors";
 const PORT = process.env.PORT || 4050;
 
@@ -14,7 +14,7 @@ import adminDashboardRoute from "./routes/adminauth/adminDashboard";
 import managerDashboardRoute from "./routes/managerauth/managerDashboard";
 import employeeDashboardRoute from "./routes/employeeauth/employeeDashboard";
 
-config();
+dotenv.config();
 
 //CONNECTION TO DATABASE
 
@@ -43,4 +43,3 @@ app.get("/", (req, res) => {
 });
 app.listen(PORT, () => console.log(`server up and running at  ${PORT}`));
 
-// "start": "nodemon index.js"
