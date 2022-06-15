@@ -28,9 +28,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SamuelRanjith/Hackathon_crm_backend.git"
-  },
-  "bugs": {
-    "url": "https://github.com/SamuelRanjith/Hackathon_crm_backend/issues"
-  },
-  "homepage": "https://github.com/SamuelRanjith/Hackathon_crm_backend#readme"
+  }
 }
