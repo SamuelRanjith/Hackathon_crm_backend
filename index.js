@@ -1,31 +1,31 @@
-const express = require("express");
+import express, { json } from "express";
 const app = express();
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import { config } from "dotenv";
+import { connect } from "mongoose";
+import cors from "cors";
 const PORT = process.env.PORT || 4050;
 
 //IMPORT ROUTES
 
-const adminRoute = require("./routes/adminauth/adminauth");
-const managerRoute = require("./routes/managerauth/managerauth");
-const employeeRoute = require("./routes/employeeauth/employeeauth");
-const adminDashboardRoute = require("./routes/adminauth/adminDashboard");
-const managerDashboardRoute = require("./routes/managerauth/managerDashboard");
-const employeeDashboardRoute = require("./routes/employeeauth/employeeDashboard");
+import adminRoute from "./routes/adminauth/adminauth";
+import managerRoute from "./routes/managerauth/managerauth";
+import employeeRoute from "./routes/employeeauth/employeeauth";
+import adminDashboardRoute from "./routes/adminauth/adminDashboard";
+import managerDashboardRoute from "./routes/managerauth/managerDashboard";
+import employeeDashboardRoute from "./routes/employeeauth/employeeDashboard";
 
-dotenv.config();
+config();
 
 //CONNECTION TO DATABASE
 
-mongoose.connect(
+connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("connected to db  ")
 );
 
 //MIDDLEWARE
-app.use(express.json(), cors());
+app.use(json(), cors());
 
 //ROUTE MIDDLEWARE
 

@@ -3,10 +3,10 @@
 //EMPLOYEE CAN VIEW
 
 const router = require("express").Router();
-const verify = require("./employeeverify");
-const ServiceRequest = require("../../models/ServiceRequest");
-const Lead = require("../../models/Lead");
-const Contact = require("../../models/Contact");
+import verify from "./employeeverify";
+import { find } from "../../models/ServiceRequest";
+import { find as _find } from "../../models/Lead";
+import { find as __find } from "../../models/Contact";
 
 //SERVICE REQUEST API'S
 
@@ -14,7 +14,7 @@ const Contact = require("../../models/Contact");
 
 router.get("/servicerequest", verify, async (req, res) => {
   try {
-    const tickets = await ServiceRequest.find().exec();
+    const tickets = await find().exec();
     res.status(200).send(tickets);
   } catch (error) {
     console.log(error);
@@ -28,7 +28,7 @@ router.get("/servicerequest", verify, async (req, res) => {
 
 router.get("/lead", verify, async (req, res) => {
   try {
-    const leads = await Lead.find().exec();
+    const leads = await _find().exec();
     res.status(200).send(leads);
   } catch (error) {
     console.log(error);
@@ -41,11 +41,11 @@ router.get("/lead", verify, async (req, res) => {
 
 router.get("/contact", verify, async (req, res) => {
   try {
-    const contacts = await Contact.find().exec();
+    const contacts = await __find().exec();
     res.status(200).send(contacts);
   } catch (error) {
     console.log(error);
   }
 });
 
-module.exports = router;
+export default router;

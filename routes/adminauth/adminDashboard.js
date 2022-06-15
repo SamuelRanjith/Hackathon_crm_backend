@@ -3,7 +3,7 @@
 //ADMIN CAN EDIT,VIEW,DELETE AND ADD
 
 const router = require("express").Router();
-const verify = require("./adminverfiy");
+const verify = require("./adminverfiy").default;
 const ServiceRequest = require("../../models/ServiceRequest");
 const Lead = require("../../models/Lead");
 const Contact = require("../../models/Contact");

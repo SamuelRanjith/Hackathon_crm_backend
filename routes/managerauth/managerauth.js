@@ -20,7 +20,7 @@ const loginSchema = Joi.object({
 
 //ADMIN VERIFY TOKEN
 
-const adminVerify = require("../adminauth/adminverfiy");
+const adminVerify = require("../adminauth/adminverfiy").default;
 
 //SIGNUP USER
 router.post("/register",  async (req, res) => {

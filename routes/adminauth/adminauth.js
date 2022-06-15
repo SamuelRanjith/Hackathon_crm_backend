@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const User = require("../../models/User");
-const verify = require("./adminverfiy");
+const verify = require("../adminverify");
 
 //VALIDATION OF USER INPUTS PREREQUISITES
 const Joi = require("@hapi/joi");
@@ -100,7 +100,7 @@ router.post("/login", async (req, res) => {
 router.delete("/deleteuser", verify, async (req, res) => {
   try {
     const users = await User.deleteOne({ email: req.body.email });
-    res.status(200).send("deleted suuccesfully");
+    res.status(200).send("deleted succesfully");
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
